@@ -14,7 +14,7 @@ Layouts are templates that can be used to wrap other content. To denote that a p
 layout: mylayout.njk
 title: My Super Rad Blog
 ---
-# My Rad Markdown Blog Post
+# My Super Rad Markdown Blog Post
 ```
 
 This will look for a `mylayout.njk` Nunjucks template file in your `_includes` folder (`_includes/mylayout.njk`). You can use any template type in your layout—it doesn’t have to match the template type of the content. An `ejs` template can use a `njk` layout, for example.
