@@ -4,6 +4,7 @@ excerpt: Wrap content in other content.
 tags:
   - docs-templates
 ---
+
 # Layouts
 
 Layouts are templates that can be used to wrap other content. To denote that a piece of content should be wrapped in a template, simply use the `layout` key in your front matter, like so:
@@ -11,7 +12,7 @@ Layouts are templates that can be used to wrap other content. To denote that a p
 ```
 ---
 layout: mylayout.njk
-title: My Rad Blog
+title: My Rad Blog Example
 ---
 # My Rad Markdown Blog Post
 ```
@@ -23,6 +24,7 @@ If you omit the file extension (`layout: mylayout`), eleventy will cycle through
 Next, we need to create a `mylayout.njk` file. It can contain any type of text, but here we’re using HTML:
 
 {% raw %}
+
 ```
 <!doctype html>
 <html lang="en">
@@ -36,6 +38,7 @@ Next, we need to create a `mylayout.njk` file. It can contain any type of text, 
   </body>
 </html>
 ```
+
 {% endraw %}
 
 Note that the layout template will populate the `content` data with the child template’s content. Also note that we don’t want to double-escape the output, so we’re using the provided Nunjuck’s `safe` filter here (see more language double-escaping syntax below).
@@ -76,7 +79,7 @@ _(New in Eleventy `v0.2.8`)_ Configuration API: use `eleventyConfig.addLayoutAli
 
 ```js
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
+  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
   return {};
 };
@@ -85,15 +88,15 @@ module.exports = function(eleventyConfig) {
 ## Prevent double-escaping in layouts
 
 {% raw %}
-| Template Language | Unescaped Content (for layout content)                 | Comparison with an Escaped Output | Docs                                                                                 |
+| Template Language | Unescaped Content (for layout content) | Comparison with an Escaped Output | Docs |
 | ----------------- | ------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------ |
-| Nunjucks          | `{{ content \| safe }}`                                | `{{ value }}`                     | [Docs](https://mozilla.github.io/nunjucks/templating.html#safe)                      |
-| EJS               | `<%- content %>`                                       | `<%= value %>`                    | [Docs](https://www.npmjs.com/package/ejs#tags)                                       |
-| Handlebars        | `{{{ content }}}` (triple stash)                       | `{{ value }}` (double stash)      | [Docs](http://handlebarsjs.com/#html-escaping)                                       |
-| Mustache          | `{{{ content }}}` (triple stash)                       | `{{ value }}` (double stash)      | [Docs](https://github.com/janl/mustache.js#variables)                                |
-| Liquid            | is by default unescaped so you can use `{{ content }}` | `{{ value \| escape}}`            | [Docs](http://shopify.github.io/liquid/filters/escape/)                              |
-| HAML              | `! #{ content }`                                       | `= #{ content }`                  | [Docs](http://haml.info/docs/yardoc/file.REFERENCE.html#unescaping_html)             |
-| Pug               | `!{content}`                                           | `#{value}`                        | [Docs](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped) |
+| Nunjucks | `{{ content \| safe }}` | `{{ value }}` | [Docs](https://mozilla.github.io/nunjucks/templating.html#safe) |
+| EJS | `<%- content %>` | `<%= value %>` | [Docs](https://www.npmjs.com/package/ejs#tags) |
+| Handlebars | `{{{ content }}}` (triple stash) | `{{ value }}` (double stash) | [Docs](http://handlebarsjs.com/#html-escaping) |
+| Mustache | `{{{ content }}}` (triple stash) | `{{ value }}` (double stash) | [Docs](https://github.com/janl/mustache.js#variables) |
+| Liquid | is by default unescaped so you can use `{{ content }}` | `{{ value \| escape}}` | [Docs](http://shopify.github.io/liquid/filters/escape/) |
+| HAML | `! #{ content }` | `= #{ content }` | [Docs](http://haml.info/docs/yardoc/file.REFERENCE.html#unescaping_html) |
+| Pug | `!{content}` | `#{value}` | [Docs](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped) |
 {% endraw %}
 
 ## Layout Chaining
@@ -113,6 +116,7 @@ title: My Rad Blog
 We want to add a main element around our post’s content because we like accessibility. Here’s what `mainlayout.njk` would look like:
 
 {% raw %}
+
 ```
 ---
 layout: mylayout.njk
@@ -121,6 +125,7 @@ layout: mylayout.njk
   {{ content | safe }}
 </main>
 ```
+
 {% endraw %}
 
 This would build on the previous `mylayout.njk` layout to write a file with:
